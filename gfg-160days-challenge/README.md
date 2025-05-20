@@ -1,28 +1,41 @@
-## ✅ Day 2 - Move All Zeroes to End
+# 💻 Day 3 - Reverse an Array
 
-**🧠 Problem Link:**  
-[Move All Zeroes to End - GeeksforGeeks](https://www.geeksforgeeks.org/move-zeroes-end-array/)
-
----
-
-### 📝 Problem Statement:
-
-You are given an array `arr[]` of non-negative integers. Your task is to **move all the zeros in the array to the right end** while maintaining the **relative order** of the non-zero elements.
-
-This operation must be performed **in-place**, meaning you should **not use extra space** for another array.
+**Difficulty:** Easy  
+**Average Time:** 5 mins  
+**Platform:** GeeksforGeeks  
+**Points Earned:** 2 ✅
 
 ---
 
-### 📌 Examples:
+## 📘 Problem Statement:
 
-Input: [1, 2, 0, 4, 3, 0, 5, 0]
-Output: [1, 2, 4, 3, 5, 0, 0, 0]
+You are given an array of integers `arr[]`. Your task is to **reverse the given array**.
 
-Input: [10, 20, 30]
-Output: [10, 20, 30]
+> 🔒 Note: Modify the array **in place** without using extra space.
 
-Input: [0, 0]
-Output: [0, 0]
+---
+
+## 🔍 Examples:
+
+### Example 1:
+Input: arr = [1, 4, 3, 2, 6, 5]
+Output: [5, 6, 2, 3, 4, 1]
+
+shell
+Copy
+Edit
+
+### Example 2:
+Input: arr = [4, 5, 2]
+Output: [2, 5, 4]
+
+shell
+Copy
+Edit
+
+### Example 3:
+Input: arr = [1]
+Output: [1]
 
 yaml
 Copy
@@ -30,68 +43,63 @@ Edit
 
 ---
 
-### 💡 Approach:
+## 📌 Constraints:
 
-- Use a variable `count` to track the position of the next non-zero element.
-- Traverse the array:
-  - If the current element is not zero, place it at `arr[count]` and increment `count`.
-- After placing all non-zero elements, fill the remaining positions in the array with 0s.
-- This maintains the relative order of non-zero elements and moves all zeros to the end in-place.
+- 1 ≤ arr.length ≤ 10⁵  
+- 0 ≤ arr[i] ≤ 10⁵
 
 ---
 
-### 🔎 Time and Space Complexity:
+## 🧠 Approach:
 
-- **Time Complexity:** O(n)
-- **Space Complexity:** O(1) – done in-place
+- Use the **two-pointer technique**:
+  - Initialize `left` at index 0 and `right` at the last index.
+  - Swap `arr[left]` and `arr[right]`.
+  - Increment `left`, decrement `right`.
+  - Repeat until `left < right`.
+
+This performs the reversal **in-place** using **constant space**.
 
 ---
 
-### 👨‍💻 Code (Java):
+## ⏱️ Time and Space Complexity:
+
+- **Time Complexity:** O(n)  
+- **Space Complexity:** O(1)
+
+---
+
+## 👨‍💻 Code (Java):
 
 ```java
 class Solution {
-    void pushZerosToEnd(int[] arr) {
-        int n = arr.length;
-        int count = 0;
-
-        for (int i = 0; i < n; i++) {
-            if (arr[i] != 0) {
-                arr[count++] = arr[i];
-            }
+    public void reverseArray(int arr[]) {
+        // code here
+        int left = 0, right = arr.length - 1;
+        while (left < right) {
+            int temp = arr[left];
+            arr[left] = arr[right];
+            arr[right] = temp;
+            left++;
+            right--;
         }
-
-        while (count < n) {
-            arr[count++] = 0;
-        }
-    }
-
-    public static void main(String[] args) {
-        Solution sol = new Solution();
-
-        int[] arr1 = {1, 2, 0, 4, 3, 0, 5, 0};
-        sol.pushZerosToEnd(arr1);
-        System.out.println(java.util.Arrays.toString(arr1));
-
-        int[] arr2 = {10, 20, 30};
-        sol.pushZerosToEnd(arr2);
-        System.out.println(java.util.Arrays.toString(arr2));
-
-        int[] arr3 = {0, 0};
-        sol.pushZerosToEnd(arr3);
-        System.out.println(java.util.Arrays.toString(arr3));
     }
 }
-✅ Output:
-csharp
+✅ Output for Test Cases:
+java
 Copy
 Edit
-[1, 2, 4, 3, 5, 0, 0, 0]
-[10, 20, 30]
-[0, 0]
-✨ What I Learned:
-Efficient in-place algorithms
+Input:  [1, 4, 3, 2, 6, 5]
+Output: [5, 6, 2, 3, 4, 1]
 
-How to preserve the relative order of elements while rearranging
+Input:  [4, 5, 2]
+Output: [2, 5, 4]
 
-Mastered array traversal and conditional placement logic
+Input:  [1]
+Output: [1]
+📚 What I Learned:
+How to reverse an array in-place using two-pointer method.
+
+Importance of modifying arrays without using extra memory.
+
+Practiced classic array problems that are commonly asked in interviews.
